@@ -2,9 +2,9 @@ package usuario;
 
 import java.time.LocalDate;
 
-public class UsuarioExperto extends TipoUsuario{
+public class UsuarioExperto extends TipoUsuario {
 	public void cambiarCategoria(Usuario usuario, LocalDate fecha) {
-		if(!cumpleRequisitosParaSerExperto(usuario, fecha)) {
+		if (!cumpleRequisitosParaSerExperto(usuario, fecha)) {
 			usuario.setTipo(new UsuarioBasico());
 		}
 	}
