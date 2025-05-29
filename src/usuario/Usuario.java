@@ -19,10 +19,11 @@ public class Usuario {
 	/* TODO: Implementar listado de opiniones en una muestra. */
 	/* NOTA: Ubicación, por ahora es un string */
 	/* ¿Qué hago con la opinión de la muestra enviado? */
-	public void enviarMuestra(String foto, String ubicacion) {
+	public void enviarMuestra(String foto, String ubicacion, TipoOpinion tipoOpinion) {
 		Muestra muestra = new Muestra(this, foto, ubicacion);
 		/* Paso: Agregar la muestra en el sistema */
-		
+		/* Evaluar si esto sucede acá */
+		this.darOpinion(tipoOpinion, muestra);
 	}
 	
 	/* TODO: Implementar listado de opiniones en una muestra. */
@@ -30,7 +31,8 @@ public class Usuario {
 	public void darOpinion(TipoOpinion tipoOpinion, Muestra muestra) {
 		Opinion opinion = new Opinion(tipoOpinion, LocalDate.now(), this.getTipo());
 		muestra.addOpinion(opinion);
-		/* ¿Agrego la validación de abajo en la clase Muestra? */
+		/* ¿Agrego la validación de abajo en la clase Muestra? -> resuelto en el addOpinion*/
+		/* Falta evaluar que no haya opinado */
 	}
 	
 	//private boolean puedeOpinar() { }
@@ -43,7 +45,7 @@ public class Usuario {
 
 	/* TODO: Evaluar esta lógica */
 	public int cantidadMuestrasEnviadas() {
-		return (int) muestrasEnviadas.stream().filter(muestra -> enUltimos30Dias(muestra.getFecha())).count();
+		return (int) muestrasEnviadas.stream().filter(muestra -> enUltimos30Dias(muestra.getDateCreated())).count();
 	}
 
 	/*
