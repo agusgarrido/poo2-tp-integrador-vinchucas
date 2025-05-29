@@ -6,6 +6,7 @@ import java.util.List;
 
 public class Usuario {
 	private TipoUsuario tipo;
+	/* ¿Lo guardo acá o en un sistema? */
 	private List<Muestra> muestrasEnviadas;
 	
 	public Usuario() {
@@ -14,11 +15,21 @@ public class Usuario {
 		}
 	
 	/* TODO: Implementar listado de opiniones en una muestra. */
-	public void enviarMuestra() {}
+	/* NOTA: Ubicación, por ahora es un string */
+	/* ¿Qué hago con la opinión de la muestra enviado? */
+	public void enviarMuestra(String foto, String ubicacion) {
+		Muestra muestra = new Muestra(this, foto, ubicacion);
+		/* Paso: Agregar la muestra en el sistema */
+		
+	}
 	
 	/* TODO: Implementar listado de opiniones en una muestra. */
 	/* ¿Guardo referencia a mis opiniones? */
-	public void darOpinion() {}
+	public void darOpinion(TipoOpinion tipoOpinion, Muestra muestra) {
+		Opinion opinion = new Opinion(tipoOpinion, LocalDate.now(), this.getTipo());
+		muestra.addOpinion(opinion);
+		/* ¿Agrego la validación de abajo en la clase Muestra? */
+	}
 	
 	//private boolean puedeOpinar() { }
 	/* Depende de si en la muestra opinó un experto
