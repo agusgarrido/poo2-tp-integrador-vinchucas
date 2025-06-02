@@ -58,6 +58,8 @@ public class ZonaDeCobertura implements ZonaDeCoberturaSubject{
 		muestrasReportadas.add(muestra);
 	}
 	
-	/* ¿Qué significa el hecho de notificar sobre una muestra a las organizaciones? */
+	/* ¿Qué significa el hecho de notificar sobre una muestra a las organizaciones?
+	 * ¿Es necesaría la muestra?
+	 */
 	public void notificar(Muestra muestra);
 }
