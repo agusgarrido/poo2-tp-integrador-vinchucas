@@ -1,20 +1,20 @@
 package opinion;
 
 public enum TipoOpinion {
-    VINCHUCA("Vinchuca"),
-    CHINCHEFOLIADA("Chinche foliada"),
-    PHTIACHINCHE("Ph-tiachinche"),
-	NINGUNA("Ninguna"),
-	IMAGENPOCOCLARA("Imagen poco clara");
+    VINCHUCA,
+    CHINCHEFOLIADA,
+    PHTIACHINCHE,
+	NINGUNA,
+	IMAGENPOCOCLARA;
 
-    private final String descripcion;
+    //private final String descripcion;
 
-    Estado(String descripcion) {
-        this.descripcion = descripcion;
-    }
+    //Estado(String descripcion) {
+    //    this.descripcion = descripcion;
+    //}
 
-    public String getDescripcion() {
+    /*public String getDescripcion() {
         return descripcion;
-    }
+    }*/
 }
 
