@@ -7,6 +7,7 @@ import java.util.Optional;
 
 import opinion.Opinion;
 import opinion.TipoOpinion;
+import ubicacion.Ubicacion;
 import usuario.Usuario;
 
 public class Muestra {
@@ -16,9 +17,9 @@ public class Muestra {
 	private Usuario created_by;
 	private LocalDateTime dateCreated;
 	private String fotoMuestra;
-	private String ubicacion; // lo dejo asi para poder modelarlo mas tarde
+	private Ubicacion ubicacion; // lo dejo asi para poder modelarlo mas tarde
 
-	public Muestra(Usuario user, String foto, String ubi) {
+	public Muestra(Usuario user, String foto, Ubicacion ubi) {
 		this.estadoMuestra = new MuestraInicial();
 		this.opiniones = new ArrayList<Opinion>();
 		this.created_by= user;
@@ -41,7 +42,7 @@ public class Muestra {
 		return fotoMuestra;
 	}
 
-	public String getUbicacion() {
+	public Ubicacion getUbicacion() {
 		return ubicacion;
 	}
 	
