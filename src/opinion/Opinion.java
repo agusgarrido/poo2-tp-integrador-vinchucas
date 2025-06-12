@@ -4,7 +4,7 @@ public class Opinion {
 	private tipoOpinion tipoOpinion;
 	private String tipoUsuario;
 	
-	public Opinion(String tipoOpinion, String tipoUsuario) {
+	public Opinion(TipoOpinion tipoOpinion, String tipoUsuario) {
 		this.tipoOpinion = tipoOpinion;
 		this.tipoUsuario = tipoUsuario;
 	}
