@@ -7,7 +7,7 @@ public class MuestraConOpinionExperta implements EstadoMuestra {
 
 	@Override
 	public void puedeOpinar(Usuario user) {
-	    if (!user.esExperto()) {//hay que generar el metodo que retorne si es experto o no el user @agus
+	    if (!user.esExperto()) { // Hecho!
 	        throw new IllegalArgumentException("El usuario no es experto. No puede opinar");
 	    }
 	}
@@ -20,6 +20,7 @@ public class MuestraConOpinionExperta implements EstadoMuestra {
 
 	@Override
     public TipoOpinion resultadoActual(Muestra muestra) {
+		/* Leila agregó getTipoOpinion */
         return muestra.getUltimaOpinion().getTipo();
     }
 

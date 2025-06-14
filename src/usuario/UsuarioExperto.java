@@ -8,4 +8,7 @@ public class UsuarioExperto extends TipoUsuario {
 			usuario.setTipo(new UsuarioBasico());
 		}
 	}
+	
+	@Override
+	public boolean esExperto() { return true; }
 }

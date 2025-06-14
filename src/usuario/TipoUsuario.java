@@ -10,4 +10,6 @@ public abstract class TipoUsuario {
 	public boolean cumpleRequisitosParaSerExperto(Usuario usuario, LocalDate fecha) {
 		return usuario.cantidadMuestrasEnviadas() > 10 && usuario.cantidadOpinionesEnviadas(fecha) > 20;
 	}
+	
+	public boolean esExperto() { return false; }
 }

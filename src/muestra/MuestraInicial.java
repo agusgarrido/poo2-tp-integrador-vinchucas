@@ -29,6 +29,7 @@ public class MuestraInicial implements EstadoMuestra {
             if (tipo == TipoOpinion.NO_DEFINIDO) continue;
 
             int count = (int) muestra.getOpiniones().stream()
+            	/* Leila agregó getTipoOpinion */
                 .filter(op -> op.getTipo().equals(tipo))
                 .count();
 
