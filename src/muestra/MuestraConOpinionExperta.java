@@ -3,11 +3,12 @@ package muestra;
 import opinion.TipoOpinion;
 import usuario.Usuario;
 
-public class MuestraConOpinionExperta implements EstadoMuestra {
+public class MuestraConOpinionExperta extends EstadoMuestra {
 
 	@Override
-	public void puedeOpinar(Usuario user) {
-	    if (!user.esExperto()) { // Hecho!
+	public void puedeOpinar(Muestra muestra, Usuario user) {
+		super.puedeOpinar(muestra, user);
+	    if (!user.esExperto()) {
 	        throw new IllegalArgumentException("El usuario no es experto. No puede opinar");
 	    }
 	}
@@ -21,7 +22,7 @@ public class MuestraConOpinionExperta implements EstadoMuestra {
 	@Override
     public TipoOpinion resultadoActual(Muestra muestra) {
 		/* Leila agregó getTipoOpinion */
-        return muestra.getUltimaOpinion().getTipo();
+        return muestra.getUltimaOpinion().getTipoOpinion();
     }
 
 }
