@@ -3,7 +3,7 @@ package muestra;
 import opinion.TipoOpinion;
 import usuario.Usuario;
 
-public class MuestraVerificada implements EstadoMuestra {
+public class MuestraVerificada extends EstadoMuestra {
 	
 	
 	private TipoOpinion resultadoFinal;
@@ -18,7 +18,7 @@ public class MuestraVerificada implements EstadoMuestra {
     }
 
 	@Override
-	public void puedeOpinar(Usuario usuario) {
+	public void puedeOpinar(Muestra muestra, Usuario usuario) {
 	    throw new IllegalArgumentException("La muestra ya está verificada, no se aceptan más opiniones");
 	}
 

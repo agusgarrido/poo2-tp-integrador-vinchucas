@@ -20,13 +20,14 @@ public class Muestra {
 	private String fotoMuestra;
 	private Ubicacion ubicacion; // lo dejo asi para poder modelarlo mas tarde
 
-	public Muestra(Usuario user, String foto, Ubicacion ubi) {
+	public Muestra(Usuario user, String foto, Ubicacion ubi, Opinion opinionInicial) {
 		this.estadoMuestra = new MuestraInicial();
 		this.opiniones = new ArrayList<Opinion>();
 		this.created_by= user;
 		this.dateCreated = LocalDate.now();
 		this.fotoMuestra = foto;
 		this.ubicacion = ubi;
+		this.opiniones.add(opinionInicial);
 
 	}
 
@@ -46,11 +47,11 @@ public class Muestra {
 		return ubicacion;
 	}
 	
-	public void addOpinion(Usuario usuario, Opinion opinion) {
-		/* En puedeOpinar falta saber si la muestra la envié yo y si ya opiné */
-		this.estadoMuestra.puedeOpinar(usuario);
+	public void addOpinion(Opinion opinion) {
+		this.estadoMuestra.puedeOpinar(opinion.getUsuario());//getUsuario hay que implementarlo lei jejeje
         this.opiniones.add(opinion);
-        this.estadoMuestra.evaluarTransicion(this);//rompo encapsulamiento si le paso el objeto entero? deberia de pasarle el estado de la miestra y ya
+        this.estadoMuestra.evaluarTransicion(this);
+        //rompo encapsulamiento si le paso el objeto entero? deberia de pasarle el estado de la miestra y ya
     }
 
 	
@@ -67,15 +68,13 @@ public class Muestra {
 
 
 	public boolean tieneOpinionDeExperto() {
-		/* Leila agregó getTipoUsuario */
-		return opiniones.stream().anyMatch(op -> op.esDeExperto());
+		return opiniones.stream().anyMatch(op -> op.esDeExperto());//lei, implementame este metodo porfi porque me facilitas la vida jajaja
 	}
 	
 	public Optional<TipoOpinion> tipoOpinionVerificada() {
-		/* Leila agregó getTipoOpinion y getTipoUsuario */
 	    for (TipoOpinion tipo : TipoOpinion.values()) {
 	        long cantidad = opiniones.stream()
-	            .filter(op -> op.esDeExperto() && op.getTipo().equals(tipo))
+	            .filter(op -> op.esDeExperto() && op.getTipoOpinion().equals(tipo))
 	            .count();
 	        
 	        if (cantidad >= 2) {

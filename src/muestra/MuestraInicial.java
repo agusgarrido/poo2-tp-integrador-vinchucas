@@ -4,11 +4,11 @@ import opinion.TipoOpinion;
 import usuario.Usuario;
 
 
-public class MuestraInicial implements EstadoMuestra {
+public class MuestraInicial extends EstadoMuestra {
 
 	@Override
-	public void puedeOpinar(Usuario usuario) {
-		//no hace nada, todos opinan
+	public void puedeOpinar(Muestra muestra, Usuario usuario) {
+		super.puedeOpinar(muestra, usuario);
 	}
 
 	@Override
