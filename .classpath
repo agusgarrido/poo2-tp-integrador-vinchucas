@@ -7,5 +7,9 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
+	<classpathentry kind="lib" path="C:/Users/garri/Documents/Universidad Nacional de Quilmes/P. Orientada a Objetos II 2025/Mockito/mockito-core-5.14.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/garri/Documents/Universidad Nacional de Quilmes/P. Orientada a Objetos II 2025/Mockito/byte-buddy-1.15.7.jar"/>
+	<classpathentry kind="lib" path="C:/Users/garri/Documents/Universidad Nacional de Quilmes/P. Orientada a Objetos II 2025/Mockito/net.bytebuddy.byte-buddy-agent_1.15.7.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
