@@ -2,12 +2,14 @@ package opinion;
 
 import java.time.LocalDate;
 
+import usuario.TipoUsuario;
+
 public class Opinion {
 	private TipoOpinion tipoOpinion;
-	private String tipoUsuario;
+	private TipoUsuario tipoUsuario;
 	private LocalDate fecha; 
 	
-	public Opinion(TipoOpinion tipoOpinion, String tipoUsuario) {
+	public Opinion(TipoOpinion tipoOpinion, TipoUsuario tipoUsuario) {
 		this.tipoOpinion = tipoOpinion;
 		this.tipoUsuario = tipoUsuario;
 		this.fecha= LocalDate.now();
@@ -18,7 +20,7 @@ public class Opinion {
 		return tipoOpinion;
 	}
 
-	public String getTipoUsuario() {
+	public TipoUsuario getTipoUsuario() {
 		return tipoUsuario;
 	}
 	

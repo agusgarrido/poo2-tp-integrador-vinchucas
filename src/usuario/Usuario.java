@@ -1,10 +1,14 @@
-package usuario;
+ package usuario;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 import muestra.Muestra;
+import opinion.Opinion;
+import opinion.TipoOpinion;
+import ubicacion.Ubicacion;
 
 public class Usuario {
 	private TipoUsuario tipo;
@@ -19,7 +23,7 @@ public class Usuario {
 	/* TODO: Implementar listado de opiniones en una muestra. */
 	/* NOTA: Ubicación, por ahora es un string */
 	/* ¿Qué hago con la opinión de la muestra enviado? */
-	public void enviarMuestra(String foto, String ubicacion, TipoOpinion tipoOpinion) {
+	public void enviarMuestra(String foto, Ubicacion ubicacion, TipoOpinion tipoOpinion) {
 		Muestra muestra = new Muestra(this, foto, ubicacion);
 		/* Paso: Agregar la muestra en el sistema */
 		/* Evaluar si esto sucede acá */
@@ -29,7 +33,7 @@ public class Usuario {
 	/* TODO: Implementar listado de opiniones en una muestra. */
 	/* ¿Guardo referencia a mis opiniones? */
 	public void darOpinion(TipoOpinion tipoOpinion, Muestra muestra) {
-		Opinion opinion = new Opinion(tipoOpinion, LocalDate.now(), this.getTipo());
+		Opinion opinion = new Opinion(this.getTipo(), tipoOpinion); // Le paso el tipo usuario porque no cambia en el registro.
 		muestra.addOpinion(opinion);
 		/* ¿Agrego la validación de abajo en la clase Muestra? -> resuelto en el addOpinion*/
 		/* Falta evaluar que no haya opinado */
@@ -52,9 +56,9 @@ public class Usuario {
 	 * TODO: Revisar implementación y ver si sirve para
 	 * cantidadObservacionesEnviadas
 	 */
-	private boolean enUltimos30Dias(LocalDate fecha) {
-		LocalDate hoy = LocalDate.now();
-		LocalDate hace30Dias = hoy.minusDays(30);
+	private boolean enUltimos30Dias(LocalDateTime fecha) {
+		LocalDateTime hoy = LocalDateTime.now();
+		LocalDateTime hace30Dias = hoy.minusDays(30);
 		return !fecha.isBefore(hace30Dias) && !fecha.isAfter(hoy);
 	}
 
