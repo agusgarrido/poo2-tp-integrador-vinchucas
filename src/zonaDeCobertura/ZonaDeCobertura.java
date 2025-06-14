@@ -23,10 +23,6 @@ public class ZonaDeCobertura implements ZonaDeCoberturaSubject{
 		this.radio = radio;
 	}
 	
-	/*TODO: Implementar Notificar 
-	 * 		Definir si calculo las zonas solapadas o las almaceno
-	 */
-	
 	public String getNombre() {
 		return this.nombre;
 	}
