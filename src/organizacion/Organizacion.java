@@ -14,8 +14,6 @@ public class Organizacion implements OrganizacionObserver{
 	private FuncionalidadExterna nuevaMuestra;
 	private FuncionalidadExterna muestraValidada;
 
-	private List<ZonaDeCobertura> zonasRegistradas = new ArrayList<ZonaDeCobertura>();
-
 	public Organizacion(Ubicacion ubicacion, String tipoOrganizacion, int cantidadEmpleados) {
 		this.ubicacion = ubicacion;
 		this.tipoOrganizacion = tipoOrganizacion;
@@ -56,12 +54,10 @@ public class Organizacion implements OrganizacionObserver{
 
 	public void registrarseEnZona(ZonaDeCobertura zona) {
 		zona.registrarOrganizacion(this);
-		this.zonasRegistradas.add(zona);
 	}
 
 	public void darseDeBajaEnZona(ZonaDeCobertura zona) {
 		zona.removerOrganizacion(this);
-		this.zonasRegistradas.remove(zona);
 	}
 
 }
