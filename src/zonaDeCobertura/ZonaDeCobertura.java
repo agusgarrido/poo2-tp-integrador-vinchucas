@@ -2,9 +2,12 @@ package zonaDeCobertura;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import muestra.Muestra;
 import organizacion.Organizacion;
+import ubicacion.Ubicacion;
+import ubicacion.calculadoraDeDistancia;
 
 public class ZonaDeCobertura implements ZonaDeCoberturaSubject{
 	private String nombre;
@@ -12,7 +15,6 @@ public class ZonaDeCobertura implements ZonaDeCoberturaSubject{
 	private double radio;
 	
 	private List<Muestra> muestrasReportadas = new ArrayList<Muestra>();
-	private List<ZonaDeCobertura> zonasSolapadas = new ArrayList<ZonaDeCobertura>();
 	private List<Organizacion> organizacionesRegistradas = new ArrayList<Organizacion>();
 	
 	public ZonaDeCobertura(String nombre, Ubicacion epicentro, double radio) {
@@ -37,9 +39,15 @@ public class ZonaDeCobertura implements ZonaDeCoberturaSubject{
 		return this.radio;
 	}
 	
-	/* ¿Cuál es la lógica de las zonas solapadas? ¿Debo guardarlas o solo saberlo de vez en cuando? */
-	public List<ZonaDeCobertura> getZonasSolapadas(){
-		return this.zonasSolapadas;
+	/* Según la consigna, debo saber cuáles se solapan, no recordarlas. */
+	public List<ZonaDeCobertura> zonasSolapadas(List<ZonaDeCobertura> zonas){
+		return zonas.stream().filter(zona -> this.solapadaCon(zona)).collect(Collectors.toList());
+	}
+	
+	/* NOTA: Dos circulos se solapan si la distancia entre sus centros es <= a la suma de sus radios. */
+	private boolean solapadaCon(ZonaDeCobertura zona) {
+		double distancia = calculadoraDeDistancia.distanciaEntreDosUbicaciones(this.getEpicentro(), zona.getEpicentro());
+	    return distancia <= (this.radio + zona.getRadio());
 	}
 	
 	public List<Organizacion> getOrganizacionesRegistradas(){
@@ -54,12 +62,18 @@ public class ZonaDeCobertura implements ZonaDeCoberturaSubject{
 		organizacionesRegistradas.remove(organizacion);
 	}
 	
-	public void reportarMuestra(Muestra muestra) {
+	/* Nueva muestra */
+	public void registrarMuestra(Muestra muestra) {
 		muestrasReportadas.add(muestra);
+		this.notificarNuevaMuestra(muestra);
 	}
 	
-	/* ¿Qué significa el hecho de notificar sobre una muestra a las organizaciones?
-	 * ¿Es necesaría la muestra?
-	 */
-	public void notificar(Muestra muestra);
+	public void notificarNuevaMuestra(Muestra muestra) {
+		this.getOrganizacionesRegistradas().forEach(organizacion -> organizacion.nuevaMuestra(this, muestra));
+	};
+	
+	/* Muestra validada */
+	public void notificarMuestraValidada(Muestra muestra) {
+		this.getOrganizacionesRegistradas().forEach(organizacion -> organizacion.muestraValidada(this, muestra));
+	};
 }
