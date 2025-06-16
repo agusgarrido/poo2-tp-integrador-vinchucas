@@ -1,6 +1,7 @@
 package zonaDeCobertura;
 
 import static org.junit.jupiter.api.Assertions.*;
+
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -13,8 +14,9 @@ import org.junit.jupiter.api.Test;
 import muestra.Muestra;
 import organizacion.Organizacion;
 import ubicacion.Ubicacion;
+import zonaDeCobertura.ZonaDeCobertura;
 
-class zonaDeCoberturaTest {
+class ZonaDeCoberturaTest {
 	// SUT
 	private ZonaDeCobertura bernal;
 	private ZonaDeCobertura quilmes;

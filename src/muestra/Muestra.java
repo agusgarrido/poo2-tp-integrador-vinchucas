@@ -28,7 +28,6 @@ public class Muestra {
 		this.fotoMuestra = foto;
 		this.ubicacion = ubi;
 		this.opiniones.add(opinionInicial);
-
 	}
 
 	public Usuario getCreated_by() {
@@ -48,7 +47,7 @@ public class Muestra {
 	}
 	
 	public void addOpinion(Opinion opinion) {
-		this.estadoMuestra.puedeOpinar(opinion.getUsuario());//getUsuario hay que implementarlo lei jejeje
+		this.estadoMuestra.puedeOpinar(this ,opinion.getUsuario());//getUsuario hay que implementarlo lei jejeje
         this.opiniones.add(opinion);
         this.estadoMuestra.evaluarTransicion(this);
         //rompo encapsulamiento si le paso el objeto entero? deberia de pasarle el estado de la miestra y ya
