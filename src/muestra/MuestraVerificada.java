@@ -27,6 +27,9 @@ public class MuestraVerificada extends EstadoMuestra {
 		//no hace nada
 		
 	}
-
+	@Override
+	public TipoEstadoMuestra nivelDeValidacion() {
+		return TipoEstadoMuestra.VERIFICADA;
+	}
 
 }

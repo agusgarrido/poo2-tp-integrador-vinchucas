@@ -29,7 +29,6 @@ public class MuestraInicial extends EstadoMuestra {
             if (tipo == TipoOpinion.NO_DEFINIDO) continue;
 
             int count = (int) muestra.getOpiniones().stream()
-            	/* Leila agregó getTipoOpinion */
                 .filter(op -> op.getTipoOpinion().equals(tipo))
                 .count();
 
@@ -44,6 +43,5 @@ public class MuestraInicial extends EstadoMuestra {
 
         return empate ? TipoOpinion.NO_DEFINIDO : tipoMasFrecuente;
     }
-
 
 }

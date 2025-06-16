@@ -15,13 +15,12 @@ public class MuestraConOpinionExperta extends EstadoMuestra {
 
 	@Override
 	public void evaluarTransicion(Muestra muestra) {
-	    muestra.tipoOpinionVerificada()
+	    muestra.tipoOpinionMasVotada()
 	           .ifPresent(tipo -> muestra.setEstadoMuestra(new MuestraVerificada(tipo)));
 	}
 
 	@Override
     public TipoOpinion resultadoActual(Muestra muestra) {
-		/* Leila agregó getTipoOpinion */
         return muestra.getUltimaOpinion().getTipoOpinion();
     }
 
