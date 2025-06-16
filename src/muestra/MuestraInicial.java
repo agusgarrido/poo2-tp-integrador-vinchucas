@@ -30,7 +30,7 @@ public class MuestraInicial extends EstadoMuestra {
 
             int count = (int) muestra.getOpiniones().stream()
             	/* Leila agregó getTipoOpinion */
-                .filter(op -> op.getTipo().equals(tipo))
+                .filter(op -> op.getTipoOpinion().equals(tipo))
                 .count();
 
             if (count > max) {
