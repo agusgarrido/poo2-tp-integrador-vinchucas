@@ -18,3 +18,4 @@ public enum TipoOpinion {
         return descripcion;
     }*/
 }
+

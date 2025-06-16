@@ -91,14 +91,14 @@ public class Muestra {
 	public TipoOpinion resultadoActual() {
 	    return this.estadoMuestra.resultadoActual(this);
 	}
-	public String nivelDeValidacion() {
-		return estadoMuestra.nivelDeValidacion()
+	public TipoEstadoMuestra nivelDeValidacion() {
+		return estadoMuestra.nivelDeValidacion();
 	}
-	
-	Fecha de creación de la muestra.
-	● Fecha de la última votación.
-	● Tipo de insecto detectado en la muestra.
-	● Nivel de verificación (votada o verificada)
+//	
+//	Fecha de creación de la muestra.
+//	● Fecha de la última votación.
+//	● Tipo de insecto detectado en la muestra.
+//	● Nivel de verificación (votada o verificada)
 	
 
 }
