@@ -34,9 +34,6 @@ public class Muestra {
 		return created_by;
 	}
 
-	public LocalDate getFechaDeCreacion() {
-		return dateCreated;
-	}
 
 	public String getFotoMuestra() {
 		return fotoMuestra;
@@ -47,7 +44,7 @@ public class Muestra {
 	}
 	
 	public void addOpinion(Opinion opinion) {
-		this.estadoMuestra.puedeOpinar(this ,opinion.getUsuario());//getUsuario hay que implementarlo lei jejeje
+		this.estadoMuestra.puedeOpinar(this ,opinion.getUsuario());
         this.opiniones.add(opinion);
         this.estadoMuestra.evaluarTransicion(this);
         //rompo encapsulamiento si le paso el objeto entero? deberia de pasarle el estado de la miestra y ya
@@ -67,7 +64,7 @@ public class Muestra {
 
 
 	public boolean tieneOpinionDeExperto() {
-		return opiniones.stream().anyMatch(op -> op.esDeExperto());//lei, implementame este metodo porfi porque me facilitas la vida jajaja
+		return opiniones.stream().anyMatch(op -> op.esDeExperto());
 	}
 	
 	public Optional<TipoOpinion> tipoOpinionMasVotada() {
@@ -87,18 +84,24 @@ public class Muestra {
 	public Opinion getUltimaOpinion() {
 		return opiniones.get(opiniones.size() - 1);
 	}
+	//BUSQUEDA DE MUESTRAS:
 	
+	 //Tipo de insecto detectado en la muestra.
 	public TipoOpinion resultadoActual() {
 	    return this.estadoMuestra.resultadoActual(this);
 	}
+    //Nivel de verificación (votada o verificada)
 	public TipoEstadoMuestra nivelDeValidacion() {
 		return estadoMuestra.nivelDeValidacion();
 	}
-//	
-//	Fecha de creación de la muestra.
-//	● Fecha de la última votación.
-//	● Tipo de insecto detectado en la muestra.
-//	● Nivel de verificación (votada o verificada)
 	
+    //Fecha de creación de la muestra.
+	public LocalDate getFechaDeCreacion() {
+		return dateCreated;
+	}
+    //Fecha de la última votación.
+	public LocalDate getFechaUltimaVotacion() {
+		return this.getUltimaOpinion().getFecha();
+	}
 
 }

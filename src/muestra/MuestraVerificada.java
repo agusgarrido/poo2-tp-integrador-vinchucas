@@ -32,5 +32,4 @@ public class MuestraVerificada extends EstadoMuestra {
 		return TipoEstadoMuestra.VERIFICADA;
 	}
 
-
 }
