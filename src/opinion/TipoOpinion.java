@@ -5,7 +5,8 @@ public enum TipoOpinion {
     CHINCHEFOLIADA,
     PHTIACHINCHE,
 	NINGUNA,
-	IMAGENPOCOCLARA;
+	IMAGENPOCOCLARA,
+	NO_DEFINIDO;
 
     //private final String descripcion;
 

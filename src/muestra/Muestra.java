@@ -34,7 +34,7 @@ public class Muestra {
 		return created_by;
 	}
 
-	public LocalDate getDateCreated() {
+	public LocalDate getFechaDeCreacion() {
 		return dateCreated;
 	}
 
@@ -70,7 +70,7 @@ public class Muestra {
 		return opiniones.stream().anyMatch(op -> op.esDeExperto());//lei, implementame este metodo porfi porque me facilitas la vida jajaja
 	}
 	
-	public Optional<TipoOpinion> tipoOpinionVerificada() {
+	public Optional<TipoOpinion> tipoOpinionMasVotada() {
 	    for (TipoOpinion tipo : TipoOpinion.values()) {
 	        long cantidad = opiniones.stream()
 	            .filter(op -> op.esDeExperto() && op.getTipoOpinion().equals(tipo))
@@ -91,7 +91,14 @@ public class Muestra {
 	public TipoOpinion resultadoActual() {
 	    return this.estadoMuestra.resultadoActual(this);
 	}
-
+	public String nivelDeValidacion() {
+		return estadoMuestra.nivelDeValidacion()
+	}
+	
+	Fecha de creación de la muestra.
+	● Fecha de la última votación.
+	● Tipo de insecto detectado en la muestra.
+	● Nivel de verificación (votada o verificada)
 	
 
 }

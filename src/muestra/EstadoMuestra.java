@@ -15,5 +15,8 @@ public abstract class EstadoMuestra {
 	public abstract void evaluarTransicion(Muestra muestra);
 	
 	public abstract TipoOpinion resultadoActual(Muestra muestra);
-	
+	public TipoEstadoMuestra nivelDeValidacion() {
+		return TipoEstadoMuestra.VOTADA;
+	}
+				
 }
