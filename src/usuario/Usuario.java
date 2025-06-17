@@ -8,29 +8,28 @@ import java.util.List;
 import muestra.Muestra;
 import opinion.Opinion;
 import opinion.TipoOpinion;
+import sistema.Sistema;
 import ubicacion.Ubicacion;
 
 public class Usuario {
 	private TipoUsuario tipo;
-	/* ¿Las muestras las guardo acá o en un sistema? ¿Tiene sentido recordarlas? */
-	/* ¿Las opiniones las guardo acá o en un sistema? ¿Tiene sentido recordarlas? */
-	private List<Muestra> muestrasEnviadas;
 	private List<Opinion> opinionesEnviadas;
+	private Sistema sistema;
 
 	public Usuario() {
 		this.tipo = new UsuarioBasico();
-		this.muestrasEnviadas = new ArrayList<Muestra>();
 		this.opinionesEnviadas = new ArrayList<Opinion>();
 	}
 
 	public void enviarMuestra(String foto, Ubicacion ubicacion, TipoOpinion tipoOpinion) {
-		Muestra muestra = new Muestra(this, foto, ubicacion);
-		/* ¿Dónde queda la muestra? */
+		Opinion opinionInicial = new Opinion(tipoOpinion, tipo, this);
+		Muestra muestra = new Muestra(this, foto, ubicacion, opinionInicial);
+		sistema.addMuestra(muestra);
 	}
 
 	public void darOpinion(TipoOpinion tipoOpinion, Muestra muestra) {
-		Opinion opinion = new Opinion(this.getTipo(), tipoOpinion, this);
-		muestra.addOpinion(this, opinion);
+		Opinion opinion = new Opinion(tipoOpinion, tipo, this);
+		muestra.addOpinion(opinion);
 		opinionesEnviadas.add(opinion);
 	}
 
@@ -38,9 +37,8 @@ public class Usuario {
 		this.getTipo().cambiarCategoria(this, fecha);
 	}
 
-	/* TODO: Falta ver quién almacena las muestras */
 	public int cantidadMuestrasEnviadas() {
-		return (int) muestrasEnviadas.stream().filter(muestra -> enUltimos30Dias(muestra.getDateCreated())).count();
+		return (int) sistema.getMuestras().stream().filter(muestra -> enUltimos30Dias(muestra.getFechaDeCreacion())).count();
 	}
 
 	private boolean enUltimos30Dias(LocalDate fecha) {
@@ -49,7 +47,6 @@ public class Usuario {
 		return !fecha.isBefore(hace30Dias) && !fecha.isAfter(hoy);
 	}
 
-	/* TODO: Falta ver quién almacena las opiniones */
 	public int cantidadOpinionesEnviadas(LocalDate fecha) {
 		return (int) opinionesEnviadas.stream().filter(opinion -> enUltimos30Dias(opinion.getFecha())).count();
 	}

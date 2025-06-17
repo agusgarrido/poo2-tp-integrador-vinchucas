@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import muestra.Muestra;
 import organizacion.Organizacion;
+import sistema.Sistema;
 import ubicacion.Ubicacion;
 import ubicacion.calculadoraDeDistancia;
 
@@ -13,7 +14,6 @@ public class ZonaDeCobertura implements ZonaDeCoberturaSubject{
 	private String nombre;
 	private Ubicacion epicentro;
 	private double radio;
-	
 	private List<Muestra> muestrasReportadas = new ArrayList<Muestra>();
 	private List<Organizacion> organizacionesRegistradas = new ArrayList<Organizacion>();
 	
@@ -35,17 +35,17 @@ public class ZonaDeCobertura implements ZonaDeCoberturaSubject{
 		return this.radio;
 	}
 	
-	/* Según la consigna, debo saber cuáles se solapan, no recordarlas. */
+	/* Zonas solapadas */
 	public List<ZonaDeCobertura> zonasSolapadas(List<ZonaDeCobertura> zonas){
 		return zonas.stream().filter(zona -> this.solapadaCon(zona)).collect(Collectors.toList());
 	}
 	
-	/* NOTA: Dos circulos se solapan si la distancia entre sus centros es <= a la suma de sus radios. */
 	private boolean solapadaCon(ZonaDeCobertura zona) {
 		double distancia = calculadoraDeDistancia.distanciaEntreDosUbicaciones(this.getEpicentro(), zona.getEpicentro());
 	    return distancia <= (this.radio + zona.getRadio());
 	}
 	
+	/* Observers */
 	public List<Organizacion> getOrganizacionesRegistradas(){
 		return this.organizacionesRegistradas;
 	}
@@ -60,8 +60,14 @@ public class ZonaDeCobertura implements ZonaDeCoberturaSubject{
 	
 	/* Nueva muestra */
 	public void registrarMuestra(Muestra muestra) {
-		muestrasReportadas.add(muestra);
-		this.notificarNuevaMuestra(muestra);
+		if(this.muestraCercana(muestra.getUbicacion())) {
+			muestrasReportadas.add(muestra);
+			this.notificarNuevaMuestra(muestra);
+		}
+	}
+	
+	private boolean muestraCercana(Ubicacion ubicacion) {
+		return calculadoraDeDistancia.distanciaEntreDosUbicaciones(ubicacion, this.epicentro) < radio;
 	}
 	
 	public void notificarNuevaMuestra(Muestra muestra) {

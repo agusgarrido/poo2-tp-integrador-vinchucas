@@ -3,6 +3,7 @@ package zonaDeCobertura;
 import static org.junit.jupiter.api.Assertions.*;
 
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -57,7 +58,9 @@ class ZonaDeCoberturaTest {
 		organizacion2 = mock(Organizacion.class);
 
 		muestra1 = mock(Muestra.class);
+		when(muestra1.getUbicacion()).thenReturn(ubicacionBernal);
 		muestra2 = mock(Muestra.class);
+		when(muestra2.getUbicacion()).thenReturn(ubicacionLaPlata);
 	}
 
 	@Test
@@ -79,6 +82,13 @@ class ZonaDeCoberturaTest {
 		quilmes.registrarOrganizacion(organizacion1);
 		quilmes.registrarMuestra(muestra1);
 		verify(organizacion1).nuevaMuestra(quilmes, muestra1);
+	}
+	
+	@Test
+	void testFallidoNotificarNuevaMuestra() {
+		bernal.registrarOrganizacion(organizacion1);
+		bernal.registrarMuestra(muestra2);
+		verify(organizacion1, never()).nuevaMuestra(bernal, muestra2);
 	}
 
 	@Test

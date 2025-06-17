@@ -52,7 +52,7 @@ public class MuestraTest {
     
     @Test
     public void testGetDateCreatedDevuelveFechaActual() {
-        assertEquals(LocalDate.now(), muestra.getDateCreated());
+        assertEquals(LocalDate.now(), muestra.getFechaDeCreacion());
     }
     
     @Test
