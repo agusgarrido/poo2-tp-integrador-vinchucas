@@ -21,7 +21,7 @@ public class Usuario {
 		this.opinionesEnviadas = new ArrayList<Opinion>();
 	}
 
-	public void enviarMuestra(String foto, Ubicacion ubicacion, TipoOpinion tipoOpinion) {
+	public void enviarMuestra(String foto, Ubicacion ubicacion, TipoOpinion tipoOpinion, Sistema sistema) {
 		Opinion opinionInicial = new Opinion(tipoOpinion, tipo, this);
 		Muestra muestra = new Muestra(this, foto, ubicacion, opinionInicial);
 		sistema.addMuestra(muestra);
@@ -33,11 +33,11 @@ public class Usuario {
 		opinionesEnviadas.add(opinion);
 	}
 
-	public void cambiarCategoria(LocalDate fecha) {
-		this.getTipo().cambiarCategoria(this, fecha);
+	public void cambiarCategoria(LocalDate fecha, Sistema sistema) {
+		this.getTipo().cambiarCategoria(this, fecha, sistema);
 	}
 
-	public int cantidadMuestrasEnviadas() {
+	public int cantidadMuestrasEnviadas(Sistema sistema) {
 		return (int) sistema.getMuestras().stream().filter(muestra -> enUltimos30Dias(muestra.getFechaDeCreacion())).count();
 	}
 
