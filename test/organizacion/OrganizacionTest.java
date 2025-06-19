@@ -70,4 +70,5 @@ class OrganizacionTest {
 		assertEquals("Educativa", organizacion1.getTipoOrganizacion());
 		assertEquals(50, organizacion1.getCantidadEmpleados());
 	}
+	
 }

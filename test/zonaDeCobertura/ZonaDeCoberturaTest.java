@@ -115,5 +115,4 @@ class ZonaDeCoberturaTest {
 		assertEquals(ubicacionBernal, bernal.getEpicentro());
 		assertNotEquals(3, bernal.getRadio());
 	}
-
 }

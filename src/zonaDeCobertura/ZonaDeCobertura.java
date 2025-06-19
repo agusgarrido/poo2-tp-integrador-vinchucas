@@ -78,4 +78,5 @@ public class ZonaDeCobertura implements ZonaDeCoberturaSubject{
 	public void notificarMuestraValidada(Muestra muestra) {
 		this.getOrganizacionesRegistradas().forEach(organizacion -> organizacion.muestraValidada(this, muestra));
 	};
+	
 }

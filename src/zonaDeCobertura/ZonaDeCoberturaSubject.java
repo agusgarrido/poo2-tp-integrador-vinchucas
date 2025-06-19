@@ -9,3 +9,4 @@ public interface ZonaDeCoberturaSubject {
 	public void notificarNuevaMuestra(Muestra muestra);
 	public void notificarMuestraValidada(Muestra muestra);
 }
+

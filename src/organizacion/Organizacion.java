@@ -59,5 +59,4 @@ public class Organizacion implements OrganizacionObserver{
 	public void darseDeBajaEnZona(ZonaDeCobertura zona) {
 		zona.removerOrganizacion(this);
 	}
-
 }
