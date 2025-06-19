@@ -20,7 +20,6 @@ public class UsuarioExpertoTest {
     private Usuario usuario;
     private Sistema sistema;
 
-
     @BeforeEach
     void setUp() {
     	tipoExperto = new UsuarioExperto();
@@ -47,5 +46,4 @@ public class UsuarioExpertoTest {
         tipoExperto.cambiarCategoria(usuario, LocalDate.now(), sistema);
         verify(usuario, never()).setTipo(any(UsuarioBasico.class)); 
     }
-
 }

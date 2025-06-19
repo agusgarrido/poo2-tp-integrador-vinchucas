@@ -62,3 +62,4 @@ public class UsuarioBasicoTest {
         verify(usuario).setTipo(any(UsuarioExperto.class)); 
     }
 }
+

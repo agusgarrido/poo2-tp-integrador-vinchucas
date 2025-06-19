@@ -33,5 +33,4 @@ public class UsuarioEspecialistaTest {
         });
         assertTrue(ex.getMessage().contains("Un usuario especialista no puede cambiar de categoría."));
     }
-
 }

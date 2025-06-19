@@ -11,3 +11,4 @@ public class UsuarioBasico extends TipoUsuario {
 		}
 	}
 }
+

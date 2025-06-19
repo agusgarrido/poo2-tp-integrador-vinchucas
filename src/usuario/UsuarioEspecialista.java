@@ -11,3 +11,4 @@ public class UsuarioEspecialista extends UsuarioExperto{
 		throw new UnsupportedOperationException("Un usuario especialista no puede cambiar de categoría.");
 	}
 }
+

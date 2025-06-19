@@ -14,3 +14,4 @@ public class UsuarioExperto extends TipoUsuario {
 	@Override
 	public boolean esExperto() { return true; }
 }
+

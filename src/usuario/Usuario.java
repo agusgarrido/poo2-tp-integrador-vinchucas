@@ -62,5 +62,4 @@ public class Usuario {
 	public boolean esExperto() {
 	    return tipo.esExperto();
 	}
-
 }

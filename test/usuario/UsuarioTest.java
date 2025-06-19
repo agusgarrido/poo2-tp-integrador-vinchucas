@@ -83,6 +83,4 @@ public class UsuarioTest {
         assertFalse(usuario.esExperto());
         verify(tipoUsuarioBasico).esExperto();
     }
-
-
 }
