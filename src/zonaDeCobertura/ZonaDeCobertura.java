@@ -65,6 +65,10 @@ public class ZonaDeCobertura implements ZonaDeCoberturaSubject{
 		}
 	}
 	
+	public boolean contiene(Muestra muestra) {
+	    return muestraCercana(muestra.getUbicacion());
+	}
+	
 	private boolean muestraCercana(Ubicacion ubicacion) {
 		return calculadoraDeDistancia.distanciaEntreDosUbicaciones(ubicacion, this.epicentro) < radio;
 	}
