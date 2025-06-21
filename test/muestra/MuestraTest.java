@@ -2,6 +2,7 @@ package muestra;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -142,6 +143,30 @@ public class MuestraTest {
         muestra.addOpinion(opinion2);
 
         assertEquals(LocalDate.of(2024, 6, 15), muestra.getFechaUltimaVotacion());
+    }
+    
+    @Test
+    public void testTipoOpinionMasVotadaDevuelveEmptyCuandoNoCoincidenDosExpertos() {
+        muestra.setEstadoMuestra(estadoMock);
+        
+        Opinion opinion1 = mock(Opinion.class);
+        Opinion opinion2 = mock(Opinion.class);
+
+        when(opinion1.getUsuario()).thenReturn(usuarioMock);
+        when(opinion1.esDeExperto()).thenReturn(true);
+        when(opinion1.getTipoOpinion()).thenReturn(TipoOpinion.VINCHUCA);
+
+        when(opinion2.getUsuario()).thenReturn(usuarioMock);
+        when(opinion2.esDeExperto()).thenReturn(true);
+        when(opinion2.getTipoOpinion()).thenReturn(TipoOpinion.PHTIACHINCHE);
+
+        when(estadoMock.nivelDeValidacion()).thenReturn(TipoEstadoMuestra.VOTADA);
+        when(estadoMock.resultadoActual(muestra)).thenReturn(null);
+        doNothing().when(estadoMock).puedeOpinar(muestra, usuarioMock);
+        muestra.addOpinion(opinion1);
+        muestra.addOpinion(opinion2);
+        Optional<TipoOpinion> resultado = muestra.tipoOpinionMasVotada();
+        assertTrue(resultado.isEmpty());
     }
 
 }

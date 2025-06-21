@@ -10,7 +10,6 @@ import opinion.TipoOpinion;
 import sistemaWeb.SistemaWeb;
 import ubicacion.Ubicacion;
 
-
 public class Usuario {
 	private TipoUsuario tipo;
 	private List<Opinion> opinionesEnviadas;
@@ -19,7 +18,7 @@ public class Usuario {
 	public Usuario(SistemaWeb sistema) {
 		this.tipo = new UsuarioBasico();
 		this.opinionesEnviadas = new ArrayList<Opinion>();
-		this.sistema=sistema;
+		this.sistema = sistema;
 	}
 
 	public void enviarMuestra(String foto, Ubicacion ubicacion, TipoOpinion tipoOpinion) {
@@ -29,20 +28,18 @@ public class Usuario {
 	}
 
 	public void darOpinion(TipoOpinion tipoOpinion, Muestra muestra) {
-	    Opinion opinion = new Opinion(tipoOpinion, tipo, this);
-	    this.sistema.agregarOpinionAMuestra(muestra, opinion);
-	    opinionesEnviadas.add(opinion);
+		Opinion opinion = new Opinion(tipoOpinion, tipo, this);
+		this.sistema.agregarOpinionAMuestra(muestra, opinion);
+		opinionesEnviadas.add(opinion);
 	}
-
-
-
 
 	public void cambiarCategoria(LocalDate fecha) {
 		this.getTipo().cambiarCategoria(this, fecha);
 	}
 
 	public int cantidadMuestrasEnviadas() {
-		return (int) this.sistema.getMuestras().stream().filter(muestra -> enUltimos30Dias(muestra.getFechaDeCreacion())).count();
+		return (int) this.sistema.getMuestras().stream()
+				.filter(muestra -> enUltimos30Dias(muestra.getFechaDeCreacion())).count();
 	}
 
 	private boolean enUltimos30Dias(LocalDate fecha) {
@@ -62,8 +59,8 @@ public class Usuario {
 	public void setTipo(TipoUsuario tipo) {
 		this.tipo = tipo;
 	}
-	
+
 	public boolean esExperto() {
-	    return tipo.esExperto();
+		return tipo.esExperto();
 	}
 }

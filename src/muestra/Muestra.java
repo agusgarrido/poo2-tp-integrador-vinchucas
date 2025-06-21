@@ -22,7 +22,7 @@ public class Muestra {
 	public Muestra(Usuario user, String foto, Ubicacion ubi, Opinion opinionInicial) {
 		this.estadoMuestra = new MuestraInicial();
 		this.opiniones = new ArrayList<Opinion>();
-		this.created_by= user;
+		this.created_by = user;
 		this.dateCreated = LocalDate.now();
 		this.fotoMuestra = foto;
 		this.ubicacion = ubi;
@@ -33,7 +33,6 @@ public class Muestra {
 		return created_by;
 	}
 
-
 	public String getFotoMuestra() {
 		return fotoMuestra;
 	}
@@ -41,64 +40,64 @@ public class Muestra {
 	public Ubicacion getUbicacion() {
 		return ubicacion;
 	}
-	
-	public void addOpinion(Opinion opinion) {
-		this.estadoMuestra.puedeOpinar(this ,opinion.getUsuario());
-        this.opiniones.add(opinion);
-        this.estadoMuestra.evaluarTransicion(this);
-        //rompo encapsulamiento si le paso el objeto entero? deberia de pasarle el estado de la miestra y ya
-    }
 
-	
+	public void addOpinion(Opinion opinion) {
+		this.estadoMuestra.puedeOpinar(this, opinion.getUsuario());
+		this.opiniones.add(opinion);
+		this.estadoMuestra.evaluarTransicion(this);
+		// rompo encapsulamiento si le paso el objeto entero? deberia de pasarle el
+		// estado de la miestra y ya
+	}
+
 	public List<Opinion> getOpiniones() {
 		return opiniones;
 	}
-	
+
 	public EstadoMuestra getEstadoMuestra() {
 		return this.estadoMuestra;
 	}
-	public void setEstadoMuestra(EstadoMuestra nuevoEstado) {
-		this.estadoMuestra= nuevoEstado;
-	}
 
+	public void setEstadoMuestra(EstadoMuestra nuevoEstado) {
+		this.estadoMuestra = nuevoEstado;
+	}
 
 	public boolean tieneOpinionDeExperto() {
 		return opiniones.stream().anyMatch(op -> op.esDeExperto());
 	}
-	
-	public Optional<TipoOpinion> tipoOpinionMasVotada() {
-	    for (TipoOpinion tipo : TipoOpinion.values()) {
-	        long cantidad = opiniones.stream()
-	            .filter(op -> op.esDeExperto() && op.getTipoOpinion().equals(tipo))
-	            .count();
-	        
-	        if (cantidad >= 2) {
-	            return Optional.of(tipo);
-	        }
-	    }
-	    return Optional.empty();
-	}
 
+	public Optional<TipoOpinion> tipoOpinionMasVotada() {
+		for (TipoOpinion tipo : TipoOpinion.values()) {
+			long cantidad = opiniones.stream().filter(op -> op.esDeExperto() && op.getTipoOpinion().equals(tipo))
+					.count();
+
+			if (cantidad >= 2) {
+				return Optional.of(tipo);
+			}
+		}
+		return Optional.empty();
+	}
 
 	public Opinion getUltimaOpinion() {
 		return opiniones.get(opiniones.size() - 1);
 	}
-	//BUSQUEDA DE MUESTRAS:
-	
-	 //Tipo de insecto detectado en la muestra.
+	// BUSQUEDA DE MUESTRAS:
+
+	// Tipo de insecto detectado en la muestra.
 	public TipoOpinion resultadoActual() {
-	    return this.estadoMuestra.resultadoActual(this);
+		return this.estadoMuestra.resultadoActual(this);
 	}
-    //Nivel de verificación (votada o verificada)
+
+	// Nivel de verificación (votada o verificada)
 	public TipoEstadoMuestra nivelDeValidacion() {
 		return estadoMuestra.nivelDeValidacion();
 	}
-	
-    //Fecha de creación de la muestra.
+
+	// Fecha de creación de la muestra.
 	public LocalDate getFechaDeCreacion() {
 		return dateCreated;
 	}
-    //Fecha de la última votación.
+
+	// Fecha de la última votación.
 	public LocalDate getFechaUltimaVotacion() {
 		return this.getUltimaOpinion().getFecha();
 	}

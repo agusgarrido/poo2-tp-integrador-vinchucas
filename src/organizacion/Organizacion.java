@@ -7,7 +7,7 @@ import muestra.Muestra;
 import ubicacion.Ubicacion;
 import zonaDeCobertura.ZonaDeCobertura;
 
-public class Organizacion implements OrganizacionObserver{
+public class Organizacion implements OrganizacionObserver {
 	private Ubicacion ubicacion;
 	private String tipoOrganizacion;
 	private int cantidadEmpleados;
@@ -31,14 +31,17 @@ public class Organizacion implements OrganizacionObserver{
 	public int getCantidadEmpleados() {
 		return this.cantidadEmpleados;
 	}
-	
-	/* ¿Queda acá o debo implementar algo a partir de la interfaz FuncionalidadExterna? */
-	
+
+	/*
+	 * ¿Queda acá o debo implementar algo a partir de la interfaz
+	 * FuncionalidadExterna?
+	 */
+
 	// Para muestra validada
 	public void setFuncionalidadMuestraValidada(FuncionalidadExterna muestraValidada) {
 		this.muestraValidada = muestraValidada;
 	}
-	
+
 	public void muestraValidada(ZonaDeCobertura zona, Muestra muestra) {
 		muestraValidada.nuevoEvento(this, zona, muestra);
 	}

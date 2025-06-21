@@ -115,4 +115,14 @@ class ZonaDeCoberturaTest {
 		assertEquals(ubicacionBernal, bernal.getEpicentro());
 		assertNotEquals(3, bernal.getRadio());
 	}
+	
+	@Test
+	void testContieneCuandoLaMuestraEstaDentroDelRadio() {
+	    assertTrue(bernal.contiene(muestra1), "La muestra debería estar contenida en la zona de Bernal");
+	}
+
+	@Test
+	void testContieneCuandoLaMuestraEstaFueraDelRadio() {
+	    assertFalse(bernal.contiene(muestra2), "La muestra no debería estar contenida en la zona de Bernal");
+	}
 }

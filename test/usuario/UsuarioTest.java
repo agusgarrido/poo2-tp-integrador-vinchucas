@@ -84,4 +84,22 @@ public class UsuarioTest {
         assertFalse(usuario.esExperto());
         verify(tipoUsuarioBasico).esExperto();
     }
+    
+    @Test
+    void testCantidadOpinionesEnviadasEnUltimos30Dias() {
+        // Opinión dentro de los últimos 30 días
+        Opinion opinionReciente = mock(Opinion.class);
+        when(opinionReciente.getFecha()).thenReturn(LocalDate.now().minusDays(5));
+
+        // Opinión fuera del rango (más de 30 días atrás)
+        Opinion opinionAntigua = mock(Opinion.class);
+        when(opinionAntigua.getFecha()).thenReturn(LocalDate.now().minusDays(40));
+        
+        // Agregamos las opiniones 
+        usuario.darOpinion(tipoOpinion, muestra);
+        usuario.darOpinion(tipoOpinion, muestra); 
+
+        int cantidad = usuario.cantidadOpinionesEnviadas(LocalDate.now());
+        assertEquals(2, cantidad); 
+    }
 }
