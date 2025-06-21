@@ -11,13 +11,13 @@ import opinion.Opinion;
 import opinion.TipoOpinion;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import sistema.Sistema;
+import sistemaWeb.SistemaWeb;
 import ubicacion.Ubicacion;
 
 public class UsuarioTest {
 
     private Usuario usuario;
-    private Sistema sistema;
+    private SistemaWeb sistema;
     private Ubicacion ubicacion;
     private Muestra muestra;
     private Muestra muestra2;
@@ -26,18 +26,18 @@ public class UsuarioTest {
     private TipoUsuario tipoUsuarioExperto;
     private TipoUsuario tipoUsuarioBasico;
 
+
     @BeforeEach
     void setUp() {
-        usuario = new Usuario();
+        sistema = mock(SistemaWeb.class);             
+        usuario = new Usuario(sistema);
         ubicacion = mock(Ubicacion.class);
         muestra = mock(Muestra.class);
         when(muestra.getFechaDeCreacion()).thenReturn(LocalDate.now().minusDays(10));
         muestra2 = mock(Muestra.class);
         when(muestra2.getFechaDeCreacion()).thenReturn(LocalDate.now().minusDays(20));
-        sistema = mock(Sistema.class);
         muestra3 = mock(Muestra.class);
         when(muestra3.getFechaDeCreacion()).thenReturn(LocalDate.now().minusDays(40));
-        sistema = mock(Sistema.class);
         when(sistema.getMuestras()).thenReturn(List.of(muestra, muestra2, muestra3));
         tipoOpinion = TipoOpinion.CHINCHEFOLIADA;
         tipoUsuarioExperto = mock(TipoUsuario.class);
@@ -46,9 +46,10 @@ public class UsuarioTest {
         when(tipoUsuarioBasico.esExperto()).thenReturn(false);
     }
 
+
     @Test
     void testEnviarMuestra() {
-        usuario.enviarMuestra("ejemplo.png", ubicacion, tipoOpinion, sistema);
+        usuario.enviarMuestra("ejemplo.png", ubicacion, tipoOpinion);
         verify(sistema, times(1)).addMuestra(any(Muestra.class));
     }
     
@@ -61,15 +62,15 @@ public class UsuarioTest {
     
     @Test
     void testCantidadMuestrasEnviadasCuentaDos() {
-        assertEquals(2, usuario.cantidadMuestrasEnviadas(sistema));
+        assertEquals(2, usuario.cantidadMuestrasEnviadas());
     }
 
     @Test
     void testCambiarCategoria() {
         usuario.setTipo(tipoUsuarioExperto);
         assertTrue(usuario.esExperto());
-        usuario.cambiarCategoria(LocalDate.now(), sistema);
-        verify(tipoUsuarioExperto, times(1)).cambiarCategoria(usuario, LocalDate.now(), sistema);
+        usuario.cambiarCategoria(LocalDate.now());
+        verify(tipoUsuarioExperto, times(1)).cambiarCategoria(usuario, LocalDate.now());
     }
     
     @Test

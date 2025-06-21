@@ -6,7 +6,6 @@ import java.util.stream.Collectors;
 
 import muestra.Muestra;
 import organizacion.Organizacion;
-import sistema.Sistema;
 import ubicacion.Ubicacion;
 import ubicacion.calculadoraDeDistancia;
 
@@ -64,6 +63,10 @@ public class ZonaDeCobertura implements ZonaDeCoberturaSubject{
 			muestrasReportadas.add(muestra);
 			this.notificarNuevaMuestra(muestra);
 		}
+	}
+	
+	public boolean contiene(Muestra muestra) {
+	    return muestraCercana(muestra.getUbicacion());
 	}
 	
 	private boolean muestraCercana(Ubicacion ubicacion) {

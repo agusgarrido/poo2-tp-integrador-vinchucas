@@ -2,15 +2,13 @@ package usuario;
 
 import java.time.LocalDate;
 
-import sistema.Sistema;
-
 public abstract class TipoUsuario {
 	
 	/* ¿Cambia solo? ¿Lo envía alguien? */
-	public abstract void cambiarCategoria(Usuario usuario, LocalDate fecha, Sistema sistema);
+	public abstract void cambiarCategoria(Usuario usuario, LocalDate fecha);
 
-	public boolean cumpleRequisitosParaSerExperto(Usuario usuario, LocalDate fecha, Sistema sistema) {
-		return usuario.cantidadMuestrasEnviadas(sistema) > 10 && usuario.cantidadOpinionesEnviadas(fecha) > 20;
+	public boolean cumpleRequisitosParaSerExperto(Usuario usuario, LocalDate fecha) {
+		return usuario.cantidadMuestrasEnviadas() > 10 && usuario.cantidadOpinionesEnviadas(fecha) > 20;
 	}
 	
 	public boolean esExperto() { return false; }

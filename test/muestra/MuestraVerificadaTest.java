@@ -41,4 +41,9 @@ public class MuestraVerificadaTest {
     void testResultadoActualDevuelveElTipoFinal() {
         assertEquals(TipoOpinion.CHINCHEFOLIADA, estado.resultadoActual(muestraMock));
     }
+    @Test
+    void testNivelDeValidacionDevuelveVerificada() {
+        assertEquals(TipoEstadoMuestra.VERIFICADA, estado.nivelDeValidacion());
+    }
+
 }
