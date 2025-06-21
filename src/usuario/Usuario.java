@@ -1,30 +1,31 @@
 package usuario;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 import muestra.Muestra;
 import opinion.Opinion;
 import opinion.TipoOpinion;
-import sistema.Sistema;
+import sistemaWeb.SistemaWeb;
 import ubicacion.Ubicacion;
+
 
 public class Usuario {
 	private TipoUsuario tipo;
 	private List<Opinion> opinionesEnviadas;
-	private Sistema sistema;
+	private SistemaWeb sistema;
 
-	public Usuario() {
+	public Usuario(SistemaWeb sistema) {
 		this.tipo = new UsuarioBasico();
 		this.opinionesEnviadas = new ArrayList<Opinion>();
+		this.sistema=sistema;
 	}
 
-	public void enviarMuestra(String foto, Ubicacion ubicacion, TipoOpinion tipoOpinion, Sistema sistema) {
+	public void enviarMuestra(String foto, Ubicacion ubicacion, TipoOpinion tipoOpinion) {
 		Opinion opinionInicial = new Opinion(tipoOpinion, tipo, this);
 		Muestra muestra = new Muestra(this, foto, ubicacion, opinionInicial);
-		sistema.addMuestra(muestra);
+		this.sistema.addMuestra(muestra);
 	}
 
 	public void darOpinion(TipoOpinion tipoOpinion, Muestra muestra) {
@@ -33,12 +34,12 @@ public class Usuario {
 		opinionesEnviadas.add(opinion);
 	}
 
-	public void cambiarCategoria(LocalDate fecha, Sistema sistema) {
-		this.getTipo().cambiarCategoria(this, fecha, sistema);
+	public void cambiarCategoria(LocalDate fecha) {
+		this.getTipo().cambiarCategoria(this, fecha);
 	}
 
-	public int cantidadMuestrasEnviadas(Sistema sistema) {
-		return (int) sistema.getMuestras().stream().filter(muestra -> enUltimos30Dias(muestra.getFechaDeCreacion())).count();
+	public int cantidadMuestrasEnviadas() {
+		return (int) this.sistema.getMuestras().stream().filter(muestra -> enUltimos30Dias(muestra.getFechaDeCreacion())).count();
 	}
 
 	private boolean enUltimos30Dias(LocalDate fecha) {

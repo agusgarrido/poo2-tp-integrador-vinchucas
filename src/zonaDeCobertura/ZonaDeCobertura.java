@@ -6,7 +6,6 @@ import java.util.stream.Collectors;
 
 import muestra.Muestra;
 import organizacion.Organizacion;
-import sistema.Sistema;
 import ubicacion.Ubicacion;
 import ubicacion.calculadoraDeDistancia;
 

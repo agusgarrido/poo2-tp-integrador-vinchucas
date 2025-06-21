@@ -17,6 +17,7 @@ import org.mockito.MockitoAnnotations;
 
 import opinion.Opinion;
 import opinion.TipoOpinion;
+import sistemaWeb.SistemaWeb;
 import usuario.Usuario;
 
 public class MuestraConOpinionExpertaTest {
@@ -25,6 +26,7 @@ public class MuestraConOpinionExpertaTest {
     @Mock Muestra muestraMock;
     @Mock Usuario usuarioMock;
     @Mock TipoOpinion tipoOpinionMock;
+    @Mock SistemaWeb sistemaWeb;
 
     EstadoMuestra estado;
 
@@ -36,7 +38,7 @@ public class MuestraConOpinionExpertaTest {
 
     @Test
     void testPuedeOpinarLanzaExcepcionSiUsuarioNoEsExperto() {
-        when(muestraMock.getCreated_by()).thenReturn(new Usuario());
+        when(muestraMock.getCreated_by()).thenReturn(new Usuario(sistemaWeb));
         when(muestraMock.getOpiniones()).thenReturn(List.of());
         when(usuarioMock.esExperto()).thenReturn(false);
 
@@ -47,7 +49,7 @@ public class MuestraConOpinionExpertaTest {
 
     @Test
     void testEvaluarTransicionCambiaEstadoSiHayTipoVerificado() {
-        when(muestraMock.tipoOpinionVerificada()).thenReturn(Optional.of(TipoOpinion.VINCHUCA));
+        when(muestraMock.tipoOpinionMasVotada()).thenReturn(Optional.of(TipoOpinion.VINCHUCA));
 
         estado.evaluarTransicion(muestraMock);
 

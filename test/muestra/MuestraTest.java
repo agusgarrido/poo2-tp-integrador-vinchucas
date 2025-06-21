@@ -112,7 +112,7 @@ public class MuestraTest {
         muestra.addOpinion(opinionExperto1);
         muestra.addOpinion(opinionExperto2);
 
-        Optional<TipoOpinion> resultado = muestra.tipoOpinionVerificada();
+        Optional<TipoOpinion> resultado = muestra.tipoOpinionMasVotada();
         assertTrue(resultado.isPresent());
         assertEquals(TipoOpinion.CHINCHEFOLIADA, resultado.get());
     }
@@ -124,4 +124,24 @@ public class MuestraTest {
         when(estadoMock.resultadoActual(muestra)).thenReturn(TipoOpinion.VINCHUCA);
         assertEquals(TipoOpinion.VINCHUCA, muestra.resultadoActual());
     }
+    
+    @Test
+    public void testNivelDeValidacionEsDelegadoAlEstado() {
+        muestra.setEstadoMuestra(estadoMock);
+        when(estadoMock.nivelDeValidacion()).thenReturn(TipoEstadoMuestra.VERIFICADA);
+
+        assertEquals(TipoEstadoMuestra.VERIFICADA, muestra.nivelDeValidacion());
+    }
+
+    @Test
+    public void testGetFechaUltimaVotacionDevuelveFechaDeUltimaOpinion() {
+        Opinion opinion2 = mock(Opinion.class);
+        when(opinion2.getUsuario()).thenReturn(mock(Usuario.class));
+        when(opinion2.getFecha()).thenReturn(LocalDate.of(2024, 6, 15));
+        
+        muestra.addOpinion(opinion2);
+
+        assertEquals(LocalDate.of(2024, 6, 15), muestra.getFechaUltimaVotacion());
+    }
+
 }

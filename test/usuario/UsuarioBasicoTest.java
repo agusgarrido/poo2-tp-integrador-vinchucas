@@ -14,7 +14,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import muestra.Muestra;
-import sistema.Sistema;
+import sistemaWeb.SistemaWeb;
 
 public class UsuarioBasicoTest {
 
@@ -22,7 +22,7 @@ public class UsuarioBasicoTest {
     private Muestra muestra1;
     private Muestra muestra2;
     private Muestra muestra3;
-    private Sistema sistema;
+    private SistemaWeb sistema;
     private Usuario usuario;
 
     @BeforeEach
@@ -36,7 +36,7 @@ public class UsuarioBasicoTest {
         muestra3 = mock(Muestra.class);
         when(muestra3.getFechaDeCreacion()).thenReturn(LocalDate.now().minusDays(40));
 
-        sistema = mock(Sistema.class);
+        sistema = mock(SistemaWeb.class);
         when(sistema.getMuestras()).thenReturn(List.of(muestra1, muestra2, muestra3));
         
         usuario = mock(Usuario.class);
@@ -49,16 +49,16 @@ public class UsuarioBasicoTest {
     
     @Test
     void testCambiarCategoriaNoCumpleRequisitos() {
-        when(usuario.cantidadMuestrasEnviadas(sistema)).thenReturn(5);
-        tipoBasico.cambiarCategoria(usuario, LocalDate.now(), sistema);
+        when(usuario.cantidadMuestrasEnviadas()).thenReturn(5);
+        tipoBasico.cambiarCategoria(usuario, LocalDate.now());
         verify(usuario, never()).setTipo(any(UsuarioExperto.class));
     }
 
     @Test
     void testCambiarCategoriaCumpleRequisitos() {
-        when(usuario.cantidadMuestrasEnviadas(sistema)).thenReturn(40);
+        when(usuario.cantidadMuestrasEnviadas()).thenReturn(40);
         when(usuario.cantidadOpinionesEnviadas(LocalDate.now())).thenReturn(40);
-        tipoBasico.cambiarCategoria(usuario, LocalDate.now(), sistema);
+        tipoBasico.cambiarCategoria(usuario, LocalDate.now());
         verify(usuario).setTipo(any(UsuarioExperto.class)); 
     }
 }

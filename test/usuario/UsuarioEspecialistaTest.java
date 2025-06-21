@@ -9,27 +9,22 @@ import java.time.LocalDate;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import sistema.Sistema;
 
 public class UsuarioEspecialistaTest {
     
     private UsuarioEspecialista tipoEspecialista;
     private Usuario usuario;
-    private Sistema sistema;
-    private UnsupportedOperationException ex;
-
     @BeforeEach
     void setUp() {
         tipoEspecialista = new UsuarioEspecialista();
         usuario = mock(Usuario.class);
-        sistema = mock(Sistema.class);
-        ex = mock(UnsupportedOperationException.class);
+        mock(UnsupportedOperationException.class);
     }
 
     @Test
     void testNoPuedeCambiarDeCategoria() {
         UnsupportedOperationException ex = assertThrows(UnsupportedOperationException.class, () -> {
-            tipoEspecialista.cambiarCategoria(usuario, LocalDate.now(), sistema);
+            tipoEspecialista.cambiarCategoria(usuario, LocalDate.now());
         });
         assertTrue(ex.getMessage().contains("Un usuario especialista no puede cambiar de categoría."));
     }

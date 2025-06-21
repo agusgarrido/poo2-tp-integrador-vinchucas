@@ -16,6 +16,7 @@ import org.mockito.MockitoAnnotations;
 
 import opinion.Opinion;
 import opinion.TipoOpinion;
+import sistemaWeb.SistemaWeb;
 import usuario.Usuario;
 
 public class MuestraInicialTest {
@@ -23,6 +24,8 @@ public class MuestraInicialTest {
     @Mock Muestra muestraMock;
     @Mock Usuario usuarioMock;
     @Mock Opinion opinionMock;
+    @Mock SistemaWeb sistemaWeb;
+
 
     EstadoMuestra estado;
 
@@ -34,7 +37,7 @@ public class MuestraInicialTest {
 
     @Test
     void testPuedeOpinarLanzaExcepcionSiUsuarioYaOpino() {
-        when(muestraMock.getCreated_by()).thenReturn(new Usuario());
+        when(muestraMock.getCreated_by()).thenReturn(new Usuario(sistemaWeb));
         when(opinionMock.getUsuario()).thenReturn(usuarioMock);
         when(muestraMock.getOpiniones()).thenReturn(List.of(opinionMock));
 
