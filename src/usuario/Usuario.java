@@ -29,10 +29,13 @@ public class Usuario {
 	}
 
 	public void darOpinion(TipoOpinion tipoOpinion, Muestra muestra) {
-		Opinion opinion = new Opinion(tipoOpinion, tipo, this);
-		muestra.addOpinion(opinion);
-		opinionesEnviadas.add(opinion);
+	    Opinion opinion = new Opinion(tipoOpinion, tipo, this);
+	    this.sistema.agregarOpinionAMuestra(muestra, opinion);
+	    opinionesEnviadas.add(opinion);
 	}
+
+
+
 
 	public void cambiarCategoria(LocalDate fecha) {
 		this.getTipo().cambiarCategoria(this, fecha);
