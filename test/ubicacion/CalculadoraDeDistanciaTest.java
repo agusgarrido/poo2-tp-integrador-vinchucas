@@ -29,13 +29,13 @@ public class CalculadoraDeDistanciaTest {
     @Test
     void testDistanciaEntreDosUbicaciones() {
         double distancia = calculadora.distanciaEntreDosUbicaciones(buenosAires, laPlata);
-        assertTrue(distancia > 40 && distancia < 60); // Aproximadamente 55km
+        assertTrue(distancia > 40 && distancia < 60); 
     }
 
     @Test
     void testUbicacionesCercanasA() {
         List<Ubicacion> todas = List.of(laPlata, cordoba);
-        List<Ubicacion> cercanas = calculadora.ubicacionesCercanasA(buenosAires, todas, 100); // 100 km
+        List<Ubicacion> cercanas = calculadora.ubicacionesCercanasA(buenosAires, todas, 100); 
         assertEquals(1, cercanas.size());
         assertTrue(cercanas.contains(laPlata));
         assertFalse(cercanas.contains(cordoba));

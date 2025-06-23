@@ -30,7 +30,7 @@ public class calculadoraDeDistancia {
 	}
 
 	public List<Muestra> muestrasCercanasA(Muestra muestraReferencia, List<Muestra> muestras, double distanciaMetros) {
-		return muestras.stream().filter(muestra -> calculadoraDeDistancia.distanciaEntreDosUbicaciones(muestraReferencia.getUbicacion(),
+		return muestras.stream().filter(muestra -> this.distanciaEntreDosUbicaciones(muestraReferencia.getUbicacion(),
 				muestra.getUbicacion()) <= distanciaMetros).collect(Collectors.toList());
 	}
 

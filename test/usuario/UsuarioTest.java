@@ -54,7 +54,7 @@ public class UsuarioTest {
     }
     
     @Test
-    void testDarOpinionAgregaOpinionYLaCuenta() {
+    void testDarOpinion() {
         doAnswer(invoc -> null).when(sistema).agregarOpinionAMuestra(eq(muestra), any(Opinion.class));
         usuario.darOpinion(tipoOpinion, muestra);
         verify(sistema, times(1)).agregarOpinionAMuestra(eq(muestra), any(Opinion.class));
