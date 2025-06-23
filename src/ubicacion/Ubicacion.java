@@ -16,5 +16,5 @@ public class Ubicacion {
 	public double getLongitud() {
 		return longitud;
 	}
-
+	
 }

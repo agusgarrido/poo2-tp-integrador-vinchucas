@@ -15,7 +15,6 @@ import org.junit.jupiter.api.Test;
 import muestra.Muestra;
 import organizacion.Organizacion;
 import ubicacion.Ubicacion;
-import zonaDeCobertura.ZonaDeCobertura;
 
 class ZonaDeCoberturaTest {
 	// SUT

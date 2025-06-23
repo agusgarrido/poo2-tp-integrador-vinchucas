@@ -17,7 +17,7 @@ public class Muestra {
 	private Usuario created_by;
 	private LocalDate dateCreated;
 	private String fotoMuestra;
-	private Ubicacion ubicacion; // lo dejo asi para poder modelarlo mas tarde
+	private Ubicacion ubicacion; 
 
 	public Muestra(Usuario user, String foto, Ubicacion ubi, Opinion opinionInicial) {
 		this.estadoMuestra = new MuestraInicial();
@@ -45,8 +45,6 @@ public class Muestra {
 		this.estadoMuestra.puedeOpinar(this, opinion.getUsuario());
 		this.opiniones.add(opinion);
 		this.estadoMuestra.evaluarTransicion(this);
-		// rompo encapsulamiento si le paso el objeto entero? deberia de pasarle el
-		// estado de la miestra y ya
 	}
 
 	public List<Opinion> getOpiniones() {
@@ -80,24 +78,19 @@ public class Muestra {
 	public Opinion getUltimaOpinion() {
 		return opiniones.get(opiniones.size() - 1);
 	}
-	// BUSQUEDA DE MUESTRAS:
-
-	// Tipo de insecto detectado en la muestra.
+	
 	public TipoOpinion resultadoActual() {
 		return this.estadoMuestra.resultadoActual(this);
 	}
 
-	// Nivel de verificación (votada o verificada)
 	public TipoEstadoMuestra nivelDeValidacion() {
 		return estadoMuestra.nivelDeValidacion();
 	}
 
-	// Fecha de creación de la muestra.
 	public LocalDate getFechaDeCreacion() {
 		return dateCreated;
 	}
 
-	// Fecha de la última votación.
 	public LocalDate getFechaUltimaVotacion() {
 		return this.getUltimaOpinion().getFecha();
 	}

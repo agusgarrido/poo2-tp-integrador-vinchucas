@@ -1,8 +1,5 @@
 package organizacion;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import muestra.Muestra;
 import ubicacion.Ubicacion;
 import zonaDeCobertura.ZonaDeCobertura;
