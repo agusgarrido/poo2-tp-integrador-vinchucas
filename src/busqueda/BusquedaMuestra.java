@@ -5,7 +5,7 @@ import java.util.List;
 
 import muestra.Muestra;
 
-abstract class BusquedaMuestra {
+abstract public class BusquedaMuestra {
 	
 	public BusquedaMuestra() {
 	}

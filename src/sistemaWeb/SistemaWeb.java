@@ -7,6 +7,7 @@ import java.util.List;
 
 import muestra.Muestra;
 import opinion.Opinion;
+import busqueda.BusquedaMuestra; 
 //import filtros.Filtro; dejo aca comentado lei para que implementes los filtros
 import usuario.Usuario;
 import zonaDeCobertura.ZonaDeCobertura;
@@ -38,13 +39,11 @@ public class SistemaWeb {
 			this.validarMuestra(muestra);
 		}
 	}
-
-	/*
-	 * public List<Muestra> buscar(Filtro filtro) { return this.muestras.stream()
-	 * .filter(filtro::cumple) .collect(Collectors.toList()); } Este metodo lo dejo
-	 * comentado lei! para implemetarlo cuando esten los filtros
-	 */
-
+	
+	public List<Muestra> buscarMuestras(BusquedaMuestra busqueda) {
+		return busqueda.buscarMuestras(this.getMuestras());
+	}
+	 
 	public void validarMuestra(Muestra muestra) {
 		this.notificarOrganizacionesMuestraValidada(muestra);
 	}
