@@ -13,14 +13,14 @@ import static org.mockito.Mockito.*;
 
 public class CalculadoraDeDistanciaTest {
 
-    private calculadoraDeDistancia calculadora;
+    private CalculadoraDeDistancia calculadora;
     private Ubicacion buenosAires;
     private Ubicacion laPlata;
     private Ubicacion cordoba;
 
     @BeforeEach
     void setUp() {
-        calculadora = new calculadoraDeDistancia();
+        calculadora = new CalculadoraDeDistancia();
         buenosAires = new Ubicacion(-34.6037, -58.3816);
         laPlata = new Ubicacion(-34.9205, -57.9536);
         cordoba = new Ubicacion(-31.4201, -64.1888);

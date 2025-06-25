@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 import muestra.Muestra;
 import organizacion.Organizacion;
 import ubicacion.Ubicacion;
-import ubicacion.calculadoraDeDistancia;
+import ubicacion.CalculadoraDeDistancia;
 
 public class ZonaDeCobertura implements ZonaDeCoberturaSubject {
 	private String nombre;
@@ -15,6 +15,7 @@ public class ZonaDeCobertura implements ZonaDeCoberturaSubject {
 	private double radio;
 	private List<Muestra> muestrasReportadas = new ArrayList<Muestra>();
 	private List<Organizacion> organizacionesRegistradas = new ArrayList<Organizacion>();
+	private CalculadoraDeDistancia calculadora = new CalculadoraDeDistancia();
 
 	public ZonaDeCobertura(String nombre, Ubicacion epicentro, double radio) {
 		this.nombre = nombre;
@@ -40,7 +41,7 @@ public class ZonaDeCobertura implements ZonaDeCoberturaSubject {
 	}
 
 	private boolean solapadaCon(ZonaDeCobertura zona) {
-		double distancia = calculadoraDeDistancia.distanciaEntreDosUbicaciones(this.getEpicentro(),
+		double distancia = calculadora.distanciaEntreDosUbicaciones(this.getEpicentro(),
 				zona.getEpicentro());
 		return distancia <= (this.radio + zona.getRadio());
 	}
@@ -71,7 +72,7 @@ public class ZonaDeCobertura implements ZonaDeCoberturaSubject {
 	}
 
 	private boolean muestraCercana(Ubicacion ubicacion) {
-		return calculadoraDeDistancia.distanciaEntreDosUbicaciones(ubicacion, this.epicentro) < radio;
+		return calculadora.distanciaEntreDosUbicaciones(ubicacion, this.epicentro) < radio;
 	}
 
 	public void notificarNuevaMuestra(Muestra muestra) {

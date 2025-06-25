@@ -5,12 +5,12 @@ import java.util.stream.Collectors;
 
 import muestra.Muestra;
 
-public class calculadoraDeDistancia {
+public class CalculadoraDeDistancia {
 
-	private static double radioTierra = 6371.0;
 	// Ver si podemos migrar el Math.toRadians a la ubicacion para no repetir
 	// codigo.
-	public static double distanciaEntreDosUbicaciones(Ubicacion ubicacion1, Ubicacion ubicacion2) {
+	public double distanciaEntreDosUbicaciones(Ubicacion ubicacion1, Ubicacion ubicacion2) {
+		double radioTierra = 6371.0;
 		double deltaLat = Math.toRadians(ubicacion2.getLatitud()) - Math.toRadians(ubicacion1.getLatitud());
 		double deltaLon = Math.toRadians(ubicacion2.getLongitud()) - Math.toRadians(ubicacion1.getLongitud());
 

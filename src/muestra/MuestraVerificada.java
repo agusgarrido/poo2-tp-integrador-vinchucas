@@ -6,9 +6,12 @@ import usuario.Usuario;
 public class MuestraVerificada extends EstadoMuestra {
 
 	private TipoOpinion resultadoFinal;
+	
 
 	public MuestraVerificada(TipoOpinion tipo) {
+		super();
 		this.resultadoFinal = tipo;
+		this.nivelDeValidacion = TipoEstadoMuestra.VERIFICADA;
 	}
 
 	@Override
